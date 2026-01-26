@@ -1,143 +1,122 @@
 
-class LottoGenerator extends HTMLElement {
+class DinnerRoulette extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
 
-        const wrapper = document.createElement('div');
-        wrapper.setAttribute('class', 'lotto-generator');
+        this.menus = [
+            { name: 'Bibimbap', image: 'https://i.imgur.com/2z24b1d.jpeg' },
+            { name: 'Bulgogi', image: 'https://i.imgur.com/L4a0pll.jpeg' },
+            { name: 'Kimchi Jjigae', image: 'https://i.imgur.com/c4aZf6R.jpeg' },
+            { name: 'Japchae', image: 'https://i.imgur.com/IZ5soBv.jpeg' },
+            { name: 'Tteokbokki', image: 'https://i.imgur.com/I2a9tSp.jpeg' },
+            { name: 'Samgyeopsal', image: 'https://i.imgur.com/jSHsL63.jpeg' },
+            { name: 'Pizza', image: 'https://i.imgur.com/eTmWoAN.jpeg' },
+            { name: 'Hamburger', image: 'https://i.imgur.com/vBwV9kH.jpeg' },
+            { name: 'Sushi', image: 'https://i.imgur.com/x4aQj1o.jpeg' }
+        ];
 
-        const button = document.createElement('button');
-        button.textContent = 'Generate Numbers';
-        button.addEventListener('click', () => this.generateNumbers());
+        this.shadowRoot.innerHTML = `
+            <style>
+                :host {
+                    --item-bg: #E0E0E0;
+                    --item-color: #1a1a1a;
+                    --button-bg: linear-gradient(45deg, #84fab0 0%, #8fd3f4 100%);
+                    --button-color: #1a1a1a;
+                    --button-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                }
+                
+                :host-context(body.dark-mode) {
+                    --item-bg: #333;
+                    --item-color: #fff;
+                    --button-color: #1a1a1a;
+                    --button-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                }
 
-        const numbersContainer = document.createElement('div');
-        numbersContainer.setAttribute('class', 'numbers');
+                .dinner-roulette {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
 
-        const style = document.createElement('style');
-        style.textContent = `
-            :host {
-                --number-bg: #E0E0E0;
-                --number-color: #1a1a1a;
-                --button-bg: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-                --button-color: #1a1a1a;
-                --button-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            }
-            
-            :host-context(body.dark-mode) {
-                --number-bg: #333;
-                --number-color: #fff;
-                --button-color: #1a1a1a;
-                 --button-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            }
+                button {
+                    background: var(--button-bg);
+                    border: none;
+                    color: var(--button-color);
+                    padding: 15px 30px;
+                    font-size: 1.2rem;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    transition: transform 0.2s, background 0.3s, color 0.3s;
+                    margin-bottom: 2rem;
+                    box-shadow: var(--button-shadow);
+                }
 
-            .lotto-generator {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+                button:hover {
+                    transform: scale(1.05);
+                }
+                
+                button:active {
+                    transform: scale(0.95);
+                }
 
-            button {
-                background: var(--button-bg);
-                border: none;
-                color: var(--button-color);
-                padding: 15px 30px;
-                font-size: 1.2rem;
-                border-radius: 50px;
-                cursor: pointer;
-                transition: transform 0.2s, background 0.3s, color 0.3s;
-                margin-bottom: 2rem;
-                box-shadow: var(--button-shadow);
-            }
+                .menu-result {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1.5rem;
+                }
 
-            button:hover {
-                transform: scale(1.05);
-            }
-            
-            button:active {
-                transform: scale(0.95);
-            }
-
-            .numbers {
-                display: flex;
-                gap: 1rem;
-            }
-
-            .number {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                background: var(--number-bg);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 1.5rem;
-                font-weight: bold;
-                color: var(--number-color);
-                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-                animation: popIn 0.5s ease-out forwards;
-                transition: background 0.3s, color 0.3s;
-            }
-
-            @keyframes popIn {
-                0% {
-                    transform: scale(0);
+                .food-image {
+                    width: 300px;
+                    height: 300px;
+                    border-radius: 20px;
+                    object-fit: cover;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                    animation: fadeIn 1s ease-out;
                     opacity: 0;
+                    animation-fill-mode: forwards;
                 }
-                100% {
-                    transform: scale(1);
-                    opacity: 1;
+                
+                .food-name {
+                    font-size: 2.5rem;
+                    font-weight: bold;
+                    color: var(--item-color);
+                    animation: slideIn 0.8s ease-out;
                 }
-            }
+
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: scale(0.8); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+
+                @keyframes slideIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+
+            </style>
+            <div class="dinner-roulette">
+                <button>What's for Dinner?</button>
+                <div class="menu-result"></div>
+            </div>
         `;
 
-        shadow.appendChild(style);
-        shadow.appendChild(wrapper);
-        wrapper.appendChild(button);
-        wrapper.appendChild(numbersContainer);
+        this.shadowRoot.querySelector('button').addEventListener('click', () => this.suggestDinner());
     }
 
-    generateNumbers() {
-        const numbersContainer = this.shadowRoot.querySelector('.numbers');
-        numbersContainer.innerHTML = '';
-        const numbers = new Set();
-        while (numbers.size < 6) {
-            numbers.add(Math.floor(Math.random() * 45) + 1);
-        }
-
-        const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-
-        sortedNumbers.forEach((number, index) => {
-            setTimeout(() => {
-                const numberDiv = document.createElement('div');
-                numberDiv.setAttribute('class', 'number');
-                numberDiv.textContent = number;
-                this.setNumberColor(numberDiv, number);
-                numbersContainer.appendChild(numberDiv);
-            }, index * 200);
-        });
-    }
-
-    setNumberColor(element, number) {
-        let backgroundColor;
-        let color = '#1a1a1a'; // Default text color for colored balls
-        if (number <= 10) {
-            backgroundColor = '#fbc400'; // Yellow
-        } else if (number <= 20) {
-            backgroundColor = '#69c8f2'; // Blue
-        } else if (number <= 30) {
-            backgroundColor = '#ff7272'; // Red
-        } else if (number <= 40) {
-            backgroundColor = '#aaa'; // Gray
-        } else {
-            backgroundColor = '#b0d840'; // Green
-        }
-        element.style.background = backgroundColor;
-        element.style.color = color;
+    suggestDinner() {
+        const menuResult = this.shadowRoot.querySelector('.menu-result');
+        const suggestion = this.menus[Math.floor(Math.random() * this.menus.length)];
+        
+        menuResult.innerHTML = `
+            <h2 class="food-name">${suggestion.name}</h2>
+            <img src="${suggestion.image}" alt="${suggestion.name}" class="food-image">
+        `;
     }
 }
 
-customElements.define('lotto-generator', LottoGenerator);
+customElements.define('dinner-roulette', DinnerRoulette);
 
 // Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle');

@@ -1,26 +1,27 @@
-# Lotto Number Generator
+# Dinner Menu Roulette
 
-A simple, visually appealing web application that generates random lottery numbers using Web Components.
+A simple and fun web application that helps you decide what to eat for dinner. It suggests a random dinner menu with a picture of the food.
 
 ## Features
 
-- Generate 6 unique random numbers between 1 and 45
-- Color-coded numbers based on ranges (yellow, blue, red, gray, green)
-- Animated number reveal with staggered timing
-- Modern gradient button with hover effects
-- Built with vanilla JavaScript and Web Components
+- **Random Menu Suggestion:** Get a random dinner idea with a single click.
+- **Visuals:** See a picture of the suggested dish.
+- **Dark & Light Mode:** Switch between themes for your viewing comfort.
+- **Modern UI:** Built with vanilla JavaScript and Web Components for a clean and modern look.
 
 ## Usage
 
-Open `index.html` in a web browser and click the "Generate Numbers" button to get your lottery numbers.
+Open `index.html` in your browser and click the "What's for Dinner?" button.
 
 ## Project Structure
 
 ```
-├── index.html   # Main HTML file
-├── main.js      # LottoGenerator Web Component
-├── style.css    # Global styles
-└── blueprint.md # Design specifications
+├── index.html
+├── main.js
+├── style.css
+├── images/
+│   ├── ... (food images)
+└── blueprint.md
 ```
 
 ## License
