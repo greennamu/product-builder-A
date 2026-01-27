@@ -1,20 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 :root {
-    --bg-color: #F0F2F5;
-    --text-color: #1a1a1a;
-    --gradient-start: #84fab0;
-    --gradient-end: #8fd3f4;
-    --toggle-bg: #FFF;
-    --toggle-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --bg-color: hsl(0, 0%, 100%); /* White */
+    --card-bg: hsl(0, 0%, 94%); /* Light Gray for card */
+    --text-color: hsl(0, 0%, 20%); /* Dark Gray text */
+    --point-blue: hsl(200, 80%, 55%); /* Bright Blue */
+    --point-purple: hsl(260, 60%, 65%); /* Bright Purple */
+    --toggle-bg: hsl(0, 0%, 85%); /* Lighter gray for toggles */
+    --toggle-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+/* Dark mode styles */
 body.dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: #fff;
-    --gradient-start: #84fab0;
-    --gradient-end: #8fd3f4;
-    --toggle-bg: #2a2a2a;
-    --toggle-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    --bg-color: hsl(0, 0%, 0%);
+    --card-bg: hsl(0, 0%, 16%);
+    --text-color: hsl(0, 0%, 100%);
+    --point-blue: hsl(200, 70%, 60%);
+    --point-purple: hsl(260, 50%, 70%);
+    --toggle-bg: hsl(0, 0%, 25%);
+    --toggle-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling if not needed */
 }
 
 body {
@@ -22,22 +36,20 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+    justify-content: center; /* Center the card horizontally */
+    align-items: center; /* Center the card vertically */
     transition: background 0.3s, color 0.3s;
 }
 
-#theme-toggle {
+/* --- Toggle Buttons --- */
+#theme-toggle, #lang-toggle {
     position: fixed;
     top: 20px;
-    right: 20px;
     background: var(--toggle-bg);
     border: none;
     color: var(--text-color);
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -49,23 +61,44 @@ body {
     z-index: 1000;
 }
 
-#theme-toggle:hover {
+#theme-toggle {
+    right: 20px;
+}
+
+#lang-toggle {
+    right: 75px; /* 20px (right of theme) + 45px (width of theme) + 10px (gap) = 75px */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#theme-toggle:hover, #lang-toggle:hover {
     transform: scale(1.1);
 }
 
-main {
+/* --- Main Card Layout --- */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: var(--card-shadow);
+    max-width: 400px;
+    width: 90%; /* Responsive width */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Space between h1 and dinner-roulette */
+}
+
+main {
+    display: contents; /* Allows main's children to be directly flex items of .card */
 }
 
 h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    background: linear-gradient(45deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-size: 2.5rem; /* Adjusted size */
+    font-weight: 700; /* Bold */
+    margin: 0; /* Reset margin */
+    color: var(--text-color); /* White */
+    /* Screenshot implies a solid color, not gradient text for title now */
+    /* Remove -webkit-background-clip and -webkit-text-fill-color if present in previous version */
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-

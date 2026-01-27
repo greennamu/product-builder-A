@@ -1,18 +1,21 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinner Menu Roulette</title>
+    <title data-lang-key="page-title">저녁 메뉴 룰렛</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
-    <main>
-        <h1>Dinner Menu Roulette</h1>
-        <dinner-roulette></dinner-roulette>
-    </main>
+    <button id="lang-toggle" aria-label="언어 변경 (EN/KO)">KO</button>
+    <button id="theme-toggle" aria-label="테마 전환">🌙</button>
+    <div class="card">
+        <main>
+            <h1 data-lang-key="main-title">저녁 메뉴 룰렛</h1>
+            <dinner-roulette></dinner-roulette>
+        </main>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
