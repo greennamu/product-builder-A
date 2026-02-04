@@ -43,7 +43,7 @@ class DinnerRoulette extends HTMLElement {
         this.menus = [
             { nameKey: 'bibimbap', image: 'images/bibimbap.jpg' },
             { nameKey: 'bulgogi', image: 'images/bulgogi.jpg' },
-            { nameKey: 'kimchi-jjigae', image: '' },
+            { nameKey: 'kimchi-jjigae', image: 'images/gimchijjigae.jpg' },
             { nameKey: 'japchae', image: 'images/japchae.jpg' },
             { nameKey: 'tteokbokki', image: 'images/ddugbogki.jpg' },
             { nameKey: 'samgyeopsal', image: 'images/samgyeopsal.jpg' },
