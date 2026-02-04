@@ -44,12 +44,12 @@ class DinnerRoulette extends HTMLElement {
             { nameKey: 'bibimbap', image: 'images/bibimbap.jpg' },
             { nameKey: 'bulgogi', image: 'images/bulgogi.jpg' },
             { nameKey: 'kimchi-jjigae', image: '' },
-            { nameKey: 'japchae', image: '' },
-            { nameKey: 'tteokbokki', image: '' },
-            { nameKey: 'samgyeopsal', image: '' },
+            { nameKey: 'japchae', image: 'images/japchae.jpg' },
+            { nameKey: 'tteokbokki', image: 'images/ddugbogki.jpg' },
+            { nameKey: 'samgyeopsal', image: 'images/samgyeopsal.jpg' },
             { nameKey: 'pizza', image: 'images/pizza.jpg' },
             { nameKey: 'hamburger', image: 'images/hamburger.jpg' },
-            { nameKey: 'sushi', image: '' }
+            { nameKey: 'sushi', image: 'images/ssi.jpg' }
         ];
 
         this.shadowRoot.innerHTML = `
