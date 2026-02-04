@@ -41,13 +41,13 @@ class DinnerRoulette extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         
         this.menus = [
-            { nameKey: 'bibimbap', image: '' },
-            { nameKey: 'bulgogi', image: '' },
+            { nameKey: 'bibimbap', image: 'images/bibimbap.jpg' },
+            { nameKey: 'bulgogi', image: 'images/bulgogi.jpg' },
             { nameKey: 'kimchi-jjigae', image: '' },
             { nameKey: 'japchae', image: '' },
             { nameKey: 'tteokbokki', image: '' },
             { nameKey: 'samgyeopsal', image: '' },
-            { nameKey: 'pizza', image: 'images/pizza.png' },
+            { nameKey: 'pizza', image: 'images/pizza.jpg' },
             { nameKey: 'hamburger', image: 'images/hamburger.jpg' },
             { nameKey: 'sushi', image: '' }
         ];
